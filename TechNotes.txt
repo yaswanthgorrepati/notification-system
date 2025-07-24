@@ -1,0 +1,39 @@
+API
+    POST:
+        v1/message/{messageType}
+    Body:
+        {
+            receiver: "",
+            subject:"",
+            body:""
+        }
+    messageType: [SMS, MAIL, WAPP]
+
+    GET:
+        v1/message/{messageType}/{receiver}?oldMessageStart=0&oldMessageEnd=9
+        get past 10 messages sent to this receiver
+    Response:
+        [
+            {
+                sender:""
+                receiver: "",
+                subject:"",
+                body:""
+            },..
+        ]
+    GET:
+        v1/message?oldReceiverStart=0&oldReceiverEnd=9
+        get past 9 receivers
+    Response:
+        [
+            {
+                sender:""
+                receiver: "",
+            },..
+        ]
+    GET:
+        v1/ping
+        health check
+    GET:
+        v1/health    
+        send test messages for health check
