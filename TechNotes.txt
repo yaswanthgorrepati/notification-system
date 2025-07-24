@@ -1,16 +1,16 @@
 API
     POST:
-        v1/message/{messageType}
+        v1/messages/{messageType}
     Body:
         {
-            receiver: "",
+            recipient: "",
             subject:"",
             body:""
         }
     messageType: [SMS, MAIL, WAPP]
 
     GET:
-        v1/message/{messageType}/{receiver}?oldMessageStart=0&oldMessageEnd=9
+        v1/messages/{messageType}/{recipient}?offset=0&limit=10
         get past 10 messages sent to this receiver
     Response:
         [
@@ -22,13 +22,14 @@ API
             },..
         ]
     GET:
-        v1/message?oldReceiverStart=0&oldReceiverEnd=9
-        get past 9 receivers
+        v1/messages/recents?offset=0&limit=10
+        get past 10 receivers
     Response:
         [
             {
                 sender:""
                 receiver: "",
+                timestamp:""
             },..
         ]
     GET:
@@ -37,3 +38,13 @@ API
     GET:
         v1/health    
         send test messages for health check
+    Response:
+        {
+            "SMS": "OK",
+            "MAIL": "OK",
+            "WAPP": "OK"
+        }
+
+TBD:
+GET /v1/messages/{messageId}
+Fetch message details by ID for auditing/debugging.        
